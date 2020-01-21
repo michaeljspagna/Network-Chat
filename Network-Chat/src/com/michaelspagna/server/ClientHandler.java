@@ -4,12 +4,25 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.Socket;
 
+/**
+ * 
+ * @author michaelspagna
+ *
+ */
 public class ClientHandler implements Runnable{
 
+	/**
+	 * 
+	 */
 	BufferedReader reader;
 	Socket sock;
 	ChatServer server;
 	
+	/**
+	 * 
+	 * @param chatServer:
+	 * @param clientSocket:
+	 */
 	public ClientHandler(ChatServer chatServer, Socket clientSocket) {
 		server = chatServer;
 		try {
@@ -21,6 +34,9 @@ public class ClientHandler implements Runnable{
 		}
 	}
 	
+	/**
+	 * 
+	 */
 	@Override
 	public void run() {
 		String message;

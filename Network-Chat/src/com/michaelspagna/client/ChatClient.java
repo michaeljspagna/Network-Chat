@@ -7,18 +7,33 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
+/**
+ * 
+ * @author michaelspagna
+ *
+ */
 public class ChatClient {
+	
+	/**
+	 * 
+	 */
 	PrintWriter writer;
 	BufferedReader reader;
 	Socket sock;
 	ChatGui gui;
 	
+	/**
+	 * 
+	 */
 	public void run() {
 		guiSetUp();
 		networkSetUp();
 		threadSetUp();
 	}
 	
+	/**
+	 * 
+	 */
 	private void guiSetUp() {
 		gui = new ChatGui();
 		gui.setBtnListener(this);
@@ -26,7 +41,9 @@ public class ChatClient {
 		gui.run();
 	}
 	
-	
+	/**
+	 * 
+	 */
 	private void networkSetUp() {
 		try {
 			sock = new Socket("127.0.0.1", 5000);
@@ -43,16 +60,27 @@ public class ChatClient {
 		}
 	}
 	
+	/**
+	 * 
+	 */
 	private void threadSetUp() {
 		Thread readThread = new Thread(new ChatReader(this, gui));
 		readThread.start();
 	}
 	
+	/**
+	 * 
+	 * @param message: 
+	 */
 	public void writeToWriter(String message) {
 		writer.println(message);
 		writer.flush();
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public String readLine() {
 		try {
 			return reader.readLine();

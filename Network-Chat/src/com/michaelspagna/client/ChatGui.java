@@ -11,6 +11,9 @@ import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 
 public class ChatGui {
+	/**
+	 * 
+	 */
 	JFrame frame;
 	JPanel chatPanel;
 	JPanel sendPanel;
@@ -19,11 +22,16 @@ public class ChatGui {
 	JTextField sendField;
 	JButton sendBtn;
 	
+	/**
+	 * ChatGui constructor
+	 */
 	public ChatGui() {
 		initialize();
 		
 	}
-	
+	/**
+	 * Initializes the components of the Gui
+	 */
 	private void initialize() {
 		frame = new JFrame("Network Chat Room");
 		chatPanel = new JPanel();
@@ -35,7 +43,9 @@ public class ChatGui {
 		
 	}
 	
-	
+	/**
+	 * Builds and runs the gui
+	 */
 	public void run() {
 		chatArea.setLineWrap(true);
 		chatArea.setWrapStyleWord(true);
@@ -51,6 +61,10 @@ public class ChatGui {
 		frame.setVisible(true);
 	}
 	
+	/**
+	 * Get user input from the textfield
+	 * @return User message from the textfield
+	 */
 	public String getMessage() {
 		String message = sendField.getText();
 		sendField.setText("");
@@ -58,14 +72,26 @@ public class ChatGui {
 		return message;
 	}
 	
-	public void setBtnListener(ChatClient cc) {
-		sendBtn.addActionListener(new BtnListener(cc, this));
+	/**
+	 * Adds a BtnListener to the sendBtn
+	 * @param client: Current instance of ChatClient 
+	 */
+	public void setBtnListener(ChatClient client) {
+		sendBtn.addActionListener(new BtnListener(client, this));
 	}
 	
-	public void setFieldListener(ChatClient cc) {
-		sendField.addKeyListener(new FieldListener(cc, this));
+	/**
+	 * Adds a FieldListener to the sendField
+	 * @param client: Current insance of ChatClient
+	 */
+	public void setFieldListener(ChatClient client) {
+		sendField.addKeyListener(new FieldListener(client, this));
 	}
 	
+	/**
+	 * Updates the TextArea text
+	 * @param message: Text to append to the chatArea
+	 */
 	public void appendArea(String message) {
 		System.out.println("Client read: " + message);
 		chatArea.append(message + '\n');

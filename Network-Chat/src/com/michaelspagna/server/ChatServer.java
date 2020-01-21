@@ -6,10 +6,21 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+/**
+ * 
+ * @author michaelspagna
+ *
+ */
 public class ChatServer {
 
+	/**
+	 * 
+	 */
 	ArrayList<Object> outputStream;
 	
+	/**
+	 * 
+	 */
 	@SuppressWarnings("resource")
 	public void run() {
 		outputStream = new ArrayList<Object>();
@@ -28,6 +39,10 @@ public class ChatServer {
 		}
 	}
 	
+	/**
+	 * 
+	 * @param message:
+	 */
 	public void tellEveryone(String message) {
 		Iterator<Object> it = outputStream.iterator();
 		while(it.hasNext()) {
